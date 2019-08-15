@@ -1,0 +1,11 @@
+.art {
+    width: 25%;
+    height: 280px;
+    margin: 2vh 2vw;
+}
+
+.art img {
+    max-width: 100%;
+    height: auto;
+    background-size: contain;
+}
