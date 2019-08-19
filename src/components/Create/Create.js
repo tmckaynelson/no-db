@@ -30,18 +30,27 @@ class Create extends React.Component {
         }
 
         this.props.createArt(newArt)
+
+        this.setState({
+            name: '',
+            artist: '',
+            image: '',
+            price: '',
+            dipslay: '',
+        })
     }
 
     render() {
 
         return (
-            <div className="create-container">
-                <form>
-                    <input type="text" placeholder="Name" onChange={ (event) => this.setState({ name: event.target.value }) } />
-                    <input type="text" placeholder="Artist" onChange={ (event) => this.setState({ artist: event.target.value }) } />
-                    <input type="text" placeholder="Image" onChange={ (event) => this.setState({ image: event.target.value }) } />
-                    <input type="text" placeholder="Price" onChange={ (event) => this.setState({ price: `$${event.target.value}` }) } />
-                    <select onChange={ (event) => this.setState({ display: event.target.value }) } >
+            <div className="create">
+                <div className="create-container">
+                    <input type="text" placeholder="Name" onChange={ (event) => this.setState({ name: event.target.value }) } value={ this.state.name } />
+                    <input type="text" placeholder="Artist" onChange={ (event) => this.setState({ artist: event.target.value }) } value={ this.state.artist } />
+                    <input type="text" placeholder="Image" onChange={ (event) => this.setState({ image: event.target.value }) } value={ this.state.image } />
+                    <input type="text" placeholder="Price" onChange={ (event) => this.setState({ price: event.target.value }) } value={ this.state.price } />
+                    <select onChange={ (event) => this.setState({ display: event.target.value }) } value={ this.state.display } >
+                        <option value="" disabled hidden>Display Location</option>
                         <option value="None">None</option>
                         <option value="Living Room">Living Room</option>
                         <option value="Kitchen">Kitchen</option>
@@ -49,7 +58,7 @@ class Create extends React.Component {
                         <option value="Bedroom">Bedroom</option>
                     </select>
                     <button onClick={ this.createArt }>Add new art</button>
-                </form>
+                </div>
             </div>
         )
     }

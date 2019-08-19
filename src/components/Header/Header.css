@@ -1,5 +1,22 @@
-header {
+@import url('https://fonts.googleapis.com/css?family=Great+Vibes|Open+Sans&display=swap');
+
+.header {
     width: 100%;
     height: 10vh;
-    background-color: chartreuse;
+    background-color: #000022;
+    color: #dddddd;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+header > h1 {
+    font-size: 40px;
+    font-family: 'Great Vibes', cursive;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    color: #cdcdcd;
 }

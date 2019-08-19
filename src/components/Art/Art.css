@@ -2,10 +2,15 @@
     width: 25%;
     height: 280px;
     margin: 2vh 2vw;
+    color: #000022;
 }
 
 .art img {
     max-width: 100%;
     height: auto;
     background-size: contain;
+}
+
+.art button {
+    margin-left: 5px;
 }

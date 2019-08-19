@@ -10,7 +10,7 @@ const Art = (props) => {
             <img src={ image } alt={ name }/>
             <p>{ name }, { artist }</p>
             <p>{ display }</p>
-            <p>{ price }</p>
+            <p>{ `$${price}` }</p>
             <button onClick={ () => props.editArt(props.id) }>Edit</button>
             <button onClick={ () => props.deleteArt(props.id) }>Delete</button>
         </div>

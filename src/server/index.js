@@ -4,7 +4,7 @@ let art = [
         name: 'July Sails',
         artist: 'Victor Spahn',
         image: 'http://www.digithall.com/wordpress/wp-content/uploads/2018/07/July-Sails.jpg',
-        price: '$500',
+        price: '500',
         display: 'None'
     },
     {
@@ -12,7 +12,7 @@ let art = [
         name: 'Fall Earthly Pleasures',
         artist: 'Schaefer Miles',
         image: 'https://parkwestgallery-104d1.kxcdn.com/wp-content/uploads/pwg/wendy-and-kevin-schaefer-miles/wendy-and-kevin-schaefer-miles-fall-earthly-pleasures-378513.jpg',
-        price: '$235',
+        price: '235',
         display: 'Kitchen'
     },
     {
@@ -20,7 +20,7 @@ let art = [
         name: 'Into the Light',
         artist: 'Schaefer Miles',
         image: 'https://parkwestgallery-104d1.kxcdn.com/wp-content/uploads/pwg/schaefer-miles/schaefer-miles-into-the-light-large-167600.jpg',
-        price: '$235',
+        price: '235',
         display: 'Bedroom'
     }
 ]
@@ -77,7 +77,21 @@ app.delete('/api/art/:id', (req,res) => {
     res.status(200).send(art)
 })
 
-// app.put('/api/art/:id', )
+app.put('/api/art/:id', (req,res) => {
+
+    console.log('hit put', req.body)
+
+    let {id} = req.params
+
+    art.forEach((element, index, array) => {
+
+        if (element.id === +id) {
+            array[index] = {...req.body}
+        }
+    })
+
+    res.status(200).send(art)
+})
 
 app.listen(8080, () => {
     console.log('server running on port 8080')

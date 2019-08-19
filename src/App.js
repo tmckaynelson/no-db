@@ -20,7 +20,7 @@ class App extends React.Component {
     this.state = {
       art: [],
       showModal: false,
-      editArt: {}
+      artToEdit: {}
     }
   }
 
@@ -48,24 +48,35 @@ class App extends React.Component {
 
     axios.delete(`/api/art/${id}`)
     .then((response) => {
+      
       this.setState({
         art: response.data
       })
     })
   }
 
-  editArt = (id) => {
-    console.log('edit art', id)
+  startEdit = (id) => {
 
     axios.get(`/api/art/${id}`)
     .then((response) => {
       
       this.setState({
         showModal: true,
-        editArt: response
+        artToEdit: response.data
       })
     })
 
+  }
+
+  editArt = (id, body) => {
+
+    axios.put(`/api/art/${id}`, body)
+        .then((response) => {
+
+            this.setState({
+              art: response.data
+            })
+        })
   }
 
   closeEdit = () => {
@@ -75,10 +86,9 @@ class App extends React.Component {
   }
 
   render() {
-    console.log('edit',this.state.editArt)
 
     let mappedArt = this.state.art.map((element, index) => {
-      return <Art key={ index } id={ element.id } art={ element } editArt={ this.editArt } deleteArt={ this.deleteArt } />
+      return <Art key={ index } id={ element.id } art={ element } editArt={ this.startEdit } deleteArt={ this.deleteArt } />
     })
 
     return (
@@ -89,9 +99,9 @@ class App extends React.Component {
           { mappedArt }
         </div>
         <ReactModal isOpen={ this.state.showModal } shouldFocusAfterRender={ true } shouldCloseOnOverlayClick={ true } 
-                    shouldCloseOnEsc={ true } shouldReturnFocusAfterClose={ true } onRequestClose={ this.closeEdit }
+                    shouldCloseOnEsc={ true } shouldReturnFocusAfterClose={ true } onRequestClose={ this.closeEdit } className="modal"
         >
-          <Edit editArt={ this.editArt } />
+          <Edit artToEdit={ this.state.artToEdit } editArt={ this.editArt } />
         </ReactModal>
         <Footer />
       </div>
